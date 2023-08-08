@@ -66,14 +66,18 @@ public class SouvenirController {
                 .orElse(null);
     }
 
-    public void updateSouvenir(int id, String name, String releaseDate, double price, List<Souvenir> souvenirs) throws ParseException {
+    public boolean updateSouvenir(int id, String name, String releaseDate, double price, List<Souvenir> souvenirs) throws ParseException {
         Souvenir souvenir = getSouvenirById(id, souvenirs);
-        if (!name.equals(""))
-            souvenir.setName(name);
-        if (!releaseDate.equals(""))
-            souvenir.setReleaseDate(releaseDate);
-        if (price >= 0)
-            souvenir.setPrice(price);
+        if (souvenir != null) {
+            if (!name.equals(""))
+                souvenir.setName(name);
+            if (!releaseDate.equals(""))
+                souvenir.setReleaseDate(releaseDate);
+            if (price >= 0)
+                souvenir.setPrice(price);
+            return true;
+        }
+        return false;
     }
 
     public List<Souvenir> getSouvenirsByProducerId(int producerId, List<Producer> producers) {

@@ -54,12 +54,16 @@ public class ProducerController {
                 .findFirst().orElse(null);
     }
 
-    public void updateProducer(int id, String name, String country, List<Producer> producers) {
+    public boolean updateProducer(int id, String name, String country, List<Producer> producers) {
         Producer producer = getProducerById(id, producers);
-        if (!name.equals(""))
-            producer.setName(name);
-        if (!country.equals(""))
-            producer.setCountry(country);
+        if (producer != null) {
+            if (!name.equals(""))
+                producer.setName(name);
+            if (!country.equals(""))
+                producer.setCountry(country);
+            return true;
+        }
+        return false;
     }
 
     public List<Producer> getProducersBySouvenirPriceLessThan(double price, List<Producer> producers) {

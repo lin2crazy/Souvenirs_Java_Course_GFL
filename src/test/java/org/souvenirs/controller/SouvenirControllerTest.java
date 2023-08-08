@@ -98,7 +98,7 @@ public class SouvenirControllerTest {
     public void getSouvenirByIdTest() {
         int id = 0;
         Souvenir expected = souvenirs.get(id);
-        Souvenir actual = souvenirController.getSouvenirById(id, souvenirs);
+        Souvenir actual = souvenirController.getSouvenirById(expected.getId(), souvenirs);
         assertEquals("Souvenirs should be equal", expected, actual);
     }
 
@@ -118,7 +118,7 @@ public class SouvenirControllerTest {
     public void getSouvenirsByProducerIdTest() {
         int id = 0;
         List<Souvenir> expected = producers.get(id).getSouvenirs();
-        List<Souvenir> actual = souvenirController.getSouvenirsByProducerId(id, producers);
+        List<Souvenir> actual = souvenirController.getSouvenirsByProducerId(producers.get(id).getId(), producers);
         assertEquals("Lists should be equal", expected, actual);
     }
 
@@ -151,7 +151,7 @@ public class SouvenirControllerTest {
         int id = 0;
         List<Souvenir> souvenirList = new ArrayList<>(souvenirs);
         Souvenir souvenir = souvenirs.get(id);
-        souvenirController.deleteSouvenir(id, souvenirList);
+        souvenirController.deleteSouvenir(souvenir.getId(), souvenirList);
         assertFalse("Deleted souvenir shouldn't be in the list", souvenirList.contains(souvenir));
     }
 }
